@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gradient-to-br from-primary-50 via-white to-accent-500/5 min-h-screen text-gray-900;
+}
+
+input[type='tel'] {
+  direction: ltr;
+  text-align: left;
+}
+
+.ltr-input {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.fade-transition {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

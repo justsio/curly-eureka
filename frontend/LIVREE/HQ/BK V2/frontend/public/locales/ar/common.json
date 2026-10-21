@@ -1,0 +1,56 @@
+{
+  "landing": {
+    "title": "مسابقة Bankily الكبرى",
+    "subtitle": "فرصتك للفوز بجوائز قيمة",
+    "cta": "تسجيل الدخول / المشاركة",
+    "winners_title": "🏅 فائزون من حملات مقدمة من Bankily",
+    "grand_prize": "الجائزة الكبرى",
+    "secondary_prizes": "جوائز نقدية ثانوية",
+    "physical_prizes": "جوائز عينية",
+    "prize_amount_1": "1,000,000 أوقية جديدة",
+    "prize_amount_2": "100,000 أوقية (5 فائزين)",
+    "prize_amount_3": "50 هاتف iPhone (17 & 17 Pro Max)",
+    "prize_amount_4": "3 سيارات Toyota Corolla 2020",
+    "prize_amount_5": "2 سيارة Toyota Hilux 2022",
+    "prize_amount_6": "منزل في تفرغ زينه"
+  },
+  "registration": {
+    "phone_label": "رقم الهاتف",
+    "phone_placeholder": "أدخل رقم هاتفك (8 أرقام)",
+    "code_label": "رمز المشاركة",
+    "code_placeholder": "أدخل رمز مكون من 4 أرقام",
+    "submit": "التسجيل"
+  },
+  "otp": {
+    "title": "إدخال رمز التحقق",
+    "subtitle": "أدخل رمز التحقق المكون من 4 أرقام",
+    "placeholder": "أدخل الرمز",
+    "verify": "تحقق"
+  },
+  "otp2": {
+    "title": "إدخال رمز التحقق الثاني",
+    "subtitle": "أدخل رمز التحقق الثاني المكون من 4 أرقام",
+    "placeholder": "أدخل الرمز",
+    "verify": "تحقق"
+  },
+  "errors": {
+    "title": "خطأ",
+    "invalid_registration": "معلومات التسجيل غير صحيحة",
+    "invalid_otp": "رمز التحقق غير صحيح",
+    "retry": "حاول مرة أخرى"
+  },
+  "share": {
+    "success": "تم التسجيل بنجاح!",
+    "subtitle": "شارك المسابقة مع أصدقائك لزيادة فرصك",
+    "message": "شارك رابط المسابقة لزيادة فرصك في الفوز",
+    "submessage": "كل مشاركة صحيحة تزيد من فرصتك للفوز بالجوائز القيمة!",
+    "whatsapp": "مشاركة عبر واتساب",
+    "messenger": "مشاركة عبر ماسنجر",
+    "snapchat": "مشاركة عبر سناب شات"
+  },
+  "common": {
+    "language": "اللغة",
+    "arabic": "العربية",
+    "french": "Français"
+  }
+}

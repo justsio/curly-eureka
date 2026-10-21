@@ -1,0 +1,56 @@
+{
+  "landing": {
+    "title": "Grand Concours Bankily",
+    "subtitle": "Votre chance de gagner des prix précieux",
+    "cta": "S'inscrire / Participer",
+    "winners_title": "🏅 Gagnants des campagnes Bankily",
+    "grand_prize": "Grand Prix",
+    "secondary_prizes": "Prix secondaires en espèces",
+    "physical_prizes": "Prix physiques",
+    "prize_amount_1": "1,000,000 Ouguiya",
+    "prize_amount_2": "100,000 Ouguiya (5 gagnants)",
+    "prize_amount_3": "50 téléphones iPhone (17 & 17 Pro Max)",
+    "prize_amount_4": "3 voitures Toyota Corolla 2020",
+    "prize_amount_5": "2 voitures Toyota Hilux 2022",
+    "prize_amount_6": "Une maison à Tefragh Zeina"
+  },
+  "registration": {
+    "phone_label": "Numéro de téléphone",
+    "phone_placeholder": "Entrez votre numéro (8 chiffres)",
+    "code_label": "Code de participation",
+    "code_placeholder": "Entrez un code à 4 chiffres",
+    "submit": "S'inscrire"
+  },
+  "otp": {
+    "title": "Saisie du code de vérification",
+    "subtitle": "Entrez le code de vérification à 4 chiffres",
+    "placeholder": "Entrez le code",
+    "verify": "Vérifier"
+  },
+  "otp2": {
+    "title": "Saisie du deuxième code de vérification",
+    "subtitle": "Entrez le deuxième code de vérification à 4 chiffres",
+    "placeholder": "Entrez le code",
+    "verify": "Vérifier"
+  },
+  "errors": {
+    "title": "Erreur",
+    "invalid_registration": "Informations d'inscription incorrectes",
+    "invalid_otp": "Code de vérification incorrect",
+    "retry": "Réessayer"
+  },
+  "share": {
+    "success": "Inscription réussie!",
+    "subtitle": "Partagez le concours avec vos amis pour augmenter vos chances",
+    "message": "Partagez le lien du concours pour augmenter vos chances de gagner",
+    "submessage": "Chaque partage correct augmente vos chances de gagner des prix précieux!",
+    "whatsapp": "Partager via WhatsApp",
+    "messenger": "Partager via Messenger",
+    "snapchat": "Partager via Snapchat"
+  },
+  "common": {
+    "language": "Langue",
+    "arabic": "العربية",
+    "french": "Français"
+  }
+}

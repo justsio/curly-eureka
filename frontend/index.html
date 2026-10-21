@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مسابقة الجوائز</title>
+    <!-- قبل تحميل الصفحة: عيّن API_BASE إذا كان الخادم على نطاق/منفذ آخر، و COMPANY_NAME لاسم الشركة -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <script>
+      window.API_BASE = "";
+      window.COMPANY_NAME = "";
+    </script>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal__box">
+        <h2 id="modal-title" class="modal__title"></h2>
+        <p id="modal-message" class="modal__text"></p>
+        <button type="button" id="modal-action" class="btn btn--primary"></button>
+      </div>
+    </div>
+
+    <header class="header">
+      <a href="#" id="nav-home" class="header__brand">
+        <span class="header__logo">LOGO</span>
+        <span id="header-title" class="header__title"></span>
+      </a>
+      <div class="header__actions">
+        <button type="button" id="btn-header-cta" class="btn btn--primary btn--sm hidden-mobile"></button>
+        <button type="button" id="btn-lang" class="btn btn--outline btn--sm"></button>
+      </div>
+    </header>
+
+    <main id="view-landing" class="view">
+      <section class="hero">
+        <h1 id="landing-title" class="hero__title"></h1>
+        <p id="landing-subtitle" class="hero__subtitle"></p>
+        <button type="button" id="btn-landing-cta" class="btn btn--primary btn--large"></button>
+      </section>
+
+      <section class="section">
+        <h2 id="prizes-heading" class="section__title"></h2>
+        <div class="prizes">
+          <div class="prize-card"><div class="prize-card__icon">💵</div><p id="prize-1" class="prize-card__text"></p></div>
+          <div class="prize-card"><div class="prize-card__icon">💰</div><p id="prize-2" class="prize-card__text"></p></div>
+          <div class="prize-card"><div class="prize-card__icon">🎁</div><p id="prize-3" class="prize-card__text"></p></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="winners-heading" class="section__title"></h2>
+        <div id="winners-grid" class="winners-grid"></div>
+      </section>
+    </main>
+
+    <main id="view-register" class="view hidden">
+      <div class="panel">
+        <h1 id="register-heading" class="panel__title"></h1>
+        <form id="form-register" class="form">
+          <label class="form__label"><span id="lbl-phone"></span>
+            <input id="input-phone" type="tel" inputmode="numeric" maxlength="8" dir="ltr" autocomplete="tel" class="form__input form__input--mono" required />
+          </label>
+          <label class="form__label"><span id="lbl-entry"></span>
+            <input id="input-entry" type="password" inputmode="numeric" maxlength="4" dir="ltr" class="form__input form__input--mono" required />
+          </label>
+          <button type="submit" id="btn-register" class="btn btn--primary btn--block"></button>
+        </form>
+      </div>
+    </main>
+
+    <main id="view-otp" class="view hidden">
+      <div class="panel">
+        <h1 id="otp-heading" class="panel__title"></h1>
+        <p id="otp-hint" class="panel__muted"></p>
+        <p id="otp-sms" class="panel__small"></p>
+        <form id="form-otp" class="form">
+          <div id="otp-boxes" class="otp-row" dir="ltr"></div>
+          <button type="submit" id="btn-otp" class="btn btn--primary btn--block" disabled></button>
+        </form>
+      </div>
+    </main>
+
+    <main id="view-share" class="view hidden">
+      <div class="share">
+        <div class="share__icon">✅</div>
+        <h1 id="share-success" class="share__title"></h1>
+        <p id="share-sub" class="share__muted"></p>
+        <p id="share-msg" class="share__card"></p>
+        <div class="share__buttons">
+          <button type="button" id="share-wa" class="btn btn--wa"></button>
+          <button type="button" id="share-fb" class="btn btn--fb"></button>
+          <button type="button" id="share-sc" class="btn btn--sc"></button>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

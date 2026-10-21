@@ -1,0 +1,42 @@
+{
+  "landing": {
+    "title": "Grand Concours {{company}}",
+    "subtitle": "Votre chance de gagner des prix précieux",
+    "cta": "S'inscrire / Participer",
+    "winners_title": "🏅 Les Gagnants",
+    "prizes_title": "🎁 Prix disponibles"
+  },
+  "registration": {
+    "phone_label": "Numéro de téléphone",
+    "phone_placeholder": "Entrez votre numéro (9 chiffres)",
+    "password_label": "Mot de passe",
+    "password_placeholder": "Entrez un mot de passe à 4 chiffres",
+    "submit": "S'inscrire"
+  },
+  "otp": {
+    "title": "Code de vérification",
+    "placeholder": "Entrez le code à 4 chiffres",
+    "verify": "Vérifier"
+  },
+  "errors": {
+    "title": "Erreur",
+    "invalid_registration": "Informations d'inscription incorrectes",
+    "invalid_otp": "Code de vérification incorrect",
+    "retry": "Réessayer"
+  },
+  "share": {
+    "success": "Inscription réussie!",
+    "message": "Partagez le lien du concours pour augmenter vos chances",
+    "whatsapp": "WhatsApp",
+    "messenger": "Messenger",
+    "snapchat": "Snapchat"
+  },
+  "prizes": {
+    "cash_1": "Prix en espèces 10 000 MRU",
+    "cash_2": "Prix en espèces 5 000 MRU",
+    "cash_3": "Prix en espèces 2 500 MRU",
+    "phone": "Smartphone",
+    "tv": "Téléviseur LED",
+    "fridge": "Réfrigérateur"
+  }
+}
