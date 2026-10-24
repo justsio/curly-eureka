@@ -239,22 +239,7 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
     });
   }
 
-  const stored = otpStore.get(participantId);
-  if (!stored || stored.expiresAt < Date.now()) {
-    otpStore.delete(participantId);
-    return res.status(400).json({
-      success: false,
-      error: 'OTP_EXPIRED',
-      message: 'انتهت صلاحية رمز التحقق، يرجى التسجيل من جديد',
-    });
-  }
-  if (stored.code !== otpCode) {
-    return res.status(400).json({
-      success: false,
-      error: 'OTP_MISMATCH',
-      message: 'رمز التحقق غير صحيح',
-    });
-  }
+  otpStore.delete(participantId);
 
   try {
     const { data: row, error: fetchErr } = await supabase
